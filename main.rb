@@ -46,7 +46,7 @@ end.userstream do |status|
   puts "@" + screen_name
   puts status.text
   
-  #リプライの有無とか確認するワケ
+  #公式RT除いてリプライの有無とか確認するワケ
   unless status.retweeted_status.respond_to?("retweeted") == true then
     
     puts "==[Reply Checker]=================================="
