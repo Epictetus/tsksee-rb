@@ -3,12 +3,11 @@
 require 'twitter'
 require 'tweetstream'
 require 'pp'
-require './reply.rb'
-require './message.rb'
+require './event.rb'
 require './setting.rb'
 
 
-reply = Reply.new()
+event = Event.new()
 message = Message.new()
 
 #避けては通れない
@@ -44,34 +43,13 @@ end.userstream do |status|
   puts "==================================================="
   
   puts "@" + screen_name
-  puts status.text
+  puts text
   
-  #公式RT除いてリプライの有無とか確認するワケ
+  #公式RT除いてテキストを処理するワケ(リプライとかふぁぼとか)
   unless status.retweeted_status.respond_to?("retweeted") == true then
     
-    puts "==[Reply Checker]=================================="
-    
-    kind = reply.kind?(text)
-    
-    puts "Reply? : " + reply.reply?(text).to_s
-    
-    if reply.reply?(text) == true then
-      
-      #リプライの種類を照らし合わせる
-      puts "Reply kind : " + kind.to_s + "(" + reply.last.to_s + ")"
-      
-      #リプライの文章を取ってくるんやね
-      replytext = message.replygen(kind.to_i)
-      puts replytext
-      
-      #リプライの送信
-      unless replytext == "" then
-        Twitter.update "@#{screen_name} #{replytext}", {"in_reply_to_status_id"=>id}
-      end
-      
-    end
-    
-    puts "==================================================="
+    event.run(text, screen_name, id)
     
   end
+  
 end
