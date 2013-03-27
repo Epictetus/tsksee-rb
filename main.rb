@@ -6,17 +6,23 @@ require 'pp'
 require './event.rb'
 require './setting.rb'
 
-$VERSION = "0.0.0.2Rb"
+$VERSION = "0.0.0.3Rb"
 
 event = Event.new()
 
 #避けては通れない
-Twitter.configure do |config|
-  config.consumer_key = CONSUMER_KEY
-  config.consumer_secret = CONSUMER_SECRET
-  config.oauth_token = OAUTH_TOKEN
-  config.oauth_token_secret = OAUTH_TOKEN_SECRET
-end
+$Usual = Twitter::Client.new(
+  :consumer_key       => CONSUMER_KEY,
+  :consumer_secret    => CONSUMER_SECRET,
+  :oauth_token        => OAUTH_TOKEN,
+  :oauth_token_secret => OAUTH_TOKEN_SECRET
+)
+$Admin = Twitter::Client.new(
+  :consumer_key       => CONSUMER_KEY_ADMIN,
+  :consumer_secret    => CONSUMER_SECRET_ADMIN,
+  :oauth_token        => OAUTH_TOKEN_ADMIN,
+  :oauth_token_secret => OAUTH_TOKEN_SECRET_ADMIN
+)
 
 TweetStream.configure do |config|
   config.consumer_key       = CONSUMER_KEY
@@ -29,10 +35,24 @@ end
 puts "Connecting to Twitter..."
 
 TweetStream::Client.new.on_error do |message|
+  
   puts "Error"
   pp message
+
+end.on_direct_message do |direct_message|
+  
+  #代入=======================================================
+    id = direct_message.sender.id
+    text = direct_message.text
+    screen_name = direct_message.sender.screen_name
+  #==========================================================
+  puts "==================================================="
+  puts "@#{screen_name} (#{id})"
+  puts text
+  
+  event.run_dm(text, screen_name, id)
+  
 end.userstream do |status|
-  pp status
   
   #代入 =====================================================
     id = status.id
@@ -42,7 +62,7 @@ end.userstream do |status|
   
   puts "==================================================="
   
-  puts "@" + screen_name
+  puts "@#{screen_name}"
   puts text
   
   #公式RT除いてテキストを処理するワケ(リプライとかふぁぼとか)
