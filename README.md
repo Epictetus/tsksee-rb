@@ -9,10 +9,9 @@ Connect to stream, get tweets and learn. Can talk(A little ;D).
 ##Functions(plans)
 
 * **Basics**
-    * REST API 1.1
-        * tweepy
     * UserStream
     * Favorites
+        * When reply are sent
         * When tweet copied
     * Tweet
         * Use learned words
