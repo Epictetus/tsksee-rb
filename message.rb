@@ -5,7 +5,7 @@ class Message
   def replygen(mode)
     
     if mode == 1 then
-      return "0.0.0.1Rb"
+      return $VERSION
     end
     
     if mode == 2 then

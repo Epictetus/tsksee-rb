@@ -6,9 +6,9 @@ require 'pp'
 require './event.rb'
 require './setting.rb'
 
+$VERSION = "0.0.0.2Rb"
 
 event = Event.new()
-message = Message.new()
 
 #避けては通れない
 Twitter.configure do |config|
