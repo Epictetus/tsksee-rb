@@ -13,6 +13,9 @@ Connect to stream, get tweets and learn. Can talk(A little ;D).
     * Favorites
         * When reply are sent
         * When tweet copied
+    * DM Commands
+        * For view more informations
+        * For administlation
     * Tweet
         * Use learned words
 
