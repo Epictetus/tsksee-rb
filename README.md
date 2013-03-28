@@ -14,7 +14,7 @@ Connect to stream, get tweets and learn. Can talk(A little ;D).
         * When reply are sent
         * When tweet copied
     * DM Commands
-        * For view more informations
+        * View more informations
         * For administlation
     * Tweet
         * Use learned words
@@ -22,7 +22,7 @@ Connect to stream, get tweets and learn. Can talk(A little ;D).
 Want to see more?  
            \- see url : http://ksswre.net/s/tsksee/func (ja)
 ##Copyrights
-* Libralies
+* Libraries
     * TweetStream
        * Copyright (c) 2012-2013 Intridea, Inc. (http://www.intridea.com/).
     * The Twitter Ruby Gem
