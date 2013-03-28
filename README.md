@@ -27,5 +27,6 @@ Want to see more?
        * Copyright (c) 2012-2013 Intridea, Inc. (http://www.intridea.com/).
     * The Twitter Ruby Gem
        * Copyright (c) 2006-2013 John Nunemaker, Wynn Netherland, Erik Michaels-Ober, Steve Richert.
+
 ##Lisence
 You can use this source code under the [MIT License](http://opensource.org/licenses/MIT).
