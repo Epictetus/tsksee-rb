@@ -4,11 +4,10 @@ class Message
   
   def replygen(mode)
     
-    if mode == 1 then
+    case mode
+    when 1
       return $VERSION
-    end
-    
-    if mode == 2 then
+    when 2
       @buf_head = [
         "君の運勢は...",
         "テキトーだけどね,",
@@ -37,7 +36,7 @@ class Message
         "凶",
         "大凶"
         ]
-      return "#{@buf_head[rand(@buf_head.size)]} #{@body[rand(@body.size)] + @buf_foot[rand(@buf_foot.size)]}"
+      return "#{@buf_head[rand(@buf_head.size)]}#{@body[rand(@body.size)]}#{@buf_foot[rand(@buf_foot.size)]}"
     end
     
     return ""
